@@ -1,2 +1,8 @@
-output/*
-!output/.gitkeep
+intermediary_scores/*
+!intermediary_scores/.gitkeep
+
+output_scores/*
+!output_scores/.gitkeep
+
+output_cvar/*
+!output_cvar/.gitkeep

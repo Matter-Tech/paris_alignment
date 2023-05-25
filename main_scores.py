@@ -44,14 +44,14 @@ companies_df = companies_formatter.companies_df
 fundamental_df = companies_formatter.fundamental_df
 
 # create intermediary file
-writer = pd.ExcelWriter(targets_fundamental_file_name, engine="xlsxwriter")
+writer = pd.ExcelWriter("intermediary_scores/"+targets_fundamental_file_name, engine="xlsxwriter")
 fundamental_df.to_excel(writer, sheet_name="fundamental_data", index=False)
 formatted_targets_df.to_excel(writer, sheet_name="target_data", index=False)
 writer.close()
 
 # read all input data for SBTi tool
 input_data = TemperatureScoresInputDataReader(companies_df=companies_df,
-                                              target_data_name=targets_fundamental_file_name)
+                                              target_data_name="intermediary_scores/"+targets_fundamental_file_name)
 
 # temperature score model from SBTi tool
 temperature_score_model = TemperatureScore(time_frames=list(ETimeFrames),
@@ -63,9 +63,9 @@ scores = TemperatureScoresCreator(input_data=input_data,
                                   matter_metrics=matter_metrics)
 
 output_df = scores.output_df
-output_df.to_csv(f"output/temperature_scores___{run_time_point}.csv",sep=";", index=False,
+output_df.to_csv(f"output_scores/temperature_scores___{run_time_point}.csv", sep=";", index=False,
                  encoding="utf-8", date_format='%d/%m/%Y')
 
 # only needed for analysis, comment out if not needed
 output_sbti_format = scores.output_sbti_format
-output_sbti_format.to_excel(f"output/temperature_scores_sbti_format___{run_time_point}.xlsx", index=False)
+output_sbti_format.to_excel(f"output_scores/temperature_scores_sbti_format___{run_time_point}.xlsx", index=False)

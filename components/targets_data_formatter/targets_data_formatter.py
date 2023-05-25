@@ -106,13 +106,13 @@ class TargetsDataFormatter:
         """
         self.source_df["base_year_ghg_s1"] = \
             np.where(
-                self.source_df["scope"] == "s1",
+                self.source_df["scope"] == "S1",
                 self.source_df["Base year emissions value"],
                 np.where(
-                    self.source_df["scope"] == "s1+s2",
+                    self.source_df["scope"] == "S1+S2",
                     self.source_df["Base year emissions value"] / 2,
                     np.where(
-                        self.source_df["scope"] == "s1+s2+s3",
+                        self.source_df["scope"] == "S1+S2+S3",
                         self.source_df["Base year emissions value"] / 3,
                         np.nan
                     )
@@ -120,13 +120,13 @@ class TargetsDataFormatter:
             )
         self.source_df["base_year_ghg_s2"] = \
             np.where(
-                self.source_df["scope"] == "s2",
+                self.source_df["scope"] == "S2",
                 self.source_df["Base year emissions value"],
                 np.where(
-                    self.source_df["scope"] == "s1+s2",
+                    self.source_df["scope"] == "S1+S2",
                     self.source_df["Base year emissions value"] / 2,
                     np.where(
-                        self.source_df["scope"] == "s1+s2+s3",
+                        self.source_df["scope"] == "S1+S2+S3",
                         self.source_df["Base year emissions value"] / 3,
                         np.nan
                     )
@@ -134,10 +134,10 @@ class TargetsDataFormatter:
             )
         self.source_df["base_year_ghg_s3"] = \
             np.where(
-                self.source_df["scope"] == "s3",
+                self.source_df["scope"] == "S3",
                 self.source_df["Base year emissions value"],
                 np.where(
-                    self.source_df["scope"] == "s1+s2+s3",
+                    self.source_df["scope"] == "S1+S2+S3",
                     self.source_df["Base year emissions value"] / 3,
                     np.nan
                     )
